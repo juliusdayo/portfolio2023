@@ -12,13 +12,14 @@ export const spotifySlice = createSlice({
     reducers: {
         setProfile: (state, action) => {
             state.profile = action.payload
+            console.log(state)
         },
-        getProfile: (state) => {
-            return state.profile
+        setTopItem: (state, action) => {
+            state.topItems = action.payload
         }
     }
 });
 
-export const { setProfile, getProfile } = spotifySlice.actions;
+export const { setProfile, setTopItem } = spotifySlice.actions;
 
 export default spotifySlice.reducer

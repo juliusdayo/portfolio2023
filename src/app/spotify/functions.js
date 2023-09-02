@@ -1,6 +1,4 @@
 
-import { spotify } from "@/config"
-
 export const main = async () => {
     const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
     console.log(clientId)
@@ -18,8 +16,7 @@ export const main = async () => {
 
 
 export const redirectToAuthCodeFlow = async () => {
-    const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
-    console.log(clientId, "CLIENTID")
+    const clientId = process.env.spotify.clientId;
     const verifier = generateCodeVerifier(128);
     const challenge = await generateCodeChallenge(verifier);
 
@@ -28,8 +25,8 @@ export const redirectToAuthCodeFlow = async () => {
     const params = new URLSearchParams();
     params.append("client_id", clientId);
     params.append("response_type", "code");
-    params.append("redirect_uri", "http://localhost:3000/spotify");
-    params.append("scope", "user-read-private user-read-email");
+    params.append("redirect_uri", `${process.env.baseUrl}/spotify`);
+    params.append("scope", "user-read-private user-read-email user-top-read");
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
 
@@ -56,7 +53,7 @@ const generateCodeChallenge = async (codeVerifier) => {
 }
 
 export const getAccessToken = async (code) => {
-    const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
+    const clientId = process.env.spotify.clientId;
     try {
         const verifier = localStorage.getItem("verifier");
 
@@ -64,7 +61,7 @@ export const getAccessToken = async (code) => {
         params.append("client_id", clientId);
         params.append("grant_type", "authorization_code");
         params.append("code", code);
-        params.append("redirect_uri", "http://localhost:3000/spotify");
+        params.append("redirect_uri", `${process.env.baseUrl}/spotify`);
         params.append("code_verifier", verifier);
 
         const result = await fetch("https://accounts.spotify.com/api/token", {
@@ -72,7 +69,6 @@ export const getAccessToken = async (code) => {
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: params
         });
-        console.log(result, 'RESULT')
         const { access_token } = await result.json();
         return access_token;
     } catch (error) {
@@ -83,7 +79,7 @@ export const getAccessToken = async (code) => {
 
 export const fetchProfile = async (token) => {
     try {
-        const result = await fetch(`${spotify.baseUrl}/v1/me`, {
+        const result = await fetch(`${process.env.spotify.baseUrl}/v1/me`, {
             method: "GET", headers: { Authorization: `Bearer ${token}` }
         });
         return await result.json();
@@ -93,6 +89,13 @@ export const fetchProfile = async (token) => {
 
 }
 
-export const fetchTopItems = (type) => {
-
+export const fetchTopItems = async (token, type) => {
+    try {
+        const result = await fetch(`${process.env.spotify.baseUrl}/v1/me/top/tracks`, {
+            method: "GET", headers: { Authorization: `Bearer ${token}` }
+        });
+        return await result.json();
+    } catch (error) {
+        console.error(error)
+    }
 }
