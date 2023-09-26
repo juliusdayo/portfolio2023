@@ -1,6 +1,6 @@
 
 'use client'
-import { Button, Text, Paper, Container, Grid } from "@mantine/core"
+import { Button, Text, Paper, Container, Grid, Divider } from "@mantine/core"
 import { headers } from "next/dist/client/components/headers";
 import querystring from "querystring"
 
@@ -36,6 +36,8 @@ const Page = () => {
         <>
             <Container>
                 <h1> Spotify Page</h1>
+                <SpotifyProfile />
+                <Divider />
                 <SpotifyProfile profileData={profile} topItemsData={topItems} />
                 <Button onClick={redirectToAuthCodeFlow} color="green.0">Login</Button>
             </Container>
