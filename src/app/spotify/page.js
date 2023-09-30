@@ -13,8 +13,7 @@ import SpotifyTopItems from "@/components/SpotifyTopItems";
 const Page = () => {
     const dispatch = useDispatch()
     const { profile, topItems } = useSelector((state) => state.spotify)
-    const test = useSelector((state) => state.spotify)
-    console.log(test)
+
     const fetchSpotifyData = async (code) => {
         const accessToken = await getAccessToken(code);
         const profileData = await fetchProfile(accessToken);
@@ -36,8 +35,6 @@ const Page = () => {
         <>
             <Container>
                 <h1> Spotify Page</h1>
-                <SpotifyProfile />
-                <Divider />
                 <SpotifyProfile profileData={profile} topItemsData={topItems} />
                 <Button onClick={redirectToAuthCodeFlow} color="green.0">Login</Button>
             </Container>
