@@ -1,18 +1,15 @@
-import { AppShell, MantineProvider } from "@mantine/core"
-import { useSelector } from "react-redux"
+import { AppShell, MantineProvider, Skeleton, Header } from "@mantine/core"
 
 
-import Header from "./Header"
 
-const ThemeProviderComponent = ({ children }) => {
-    const { isDark } = useSelector((state) => state.general)
+const Loading = ({ children }) => {
     return (
 
         <MantineProvider
             withGlobalStyles
             withNormalizeCSS
             theme={{
-                colorScheme: isDark ? "dark" : "light",
+                colorScheme: "dark",
                 colors: {
                     green: ["#1db954", "#1ed760"],
                     white: ["#ffffff"],
@@ -23,13 +20,13 @@ const ThemeProviderComponent = ({ children }) => {
             }}
         >
             <AppShell
-                header={
-                    <Header isDark={isDark} />
-                }
+                navbar={<Header height={80} p="xs">
+                    <Skeleton />
+                </Header>}
             >
                 {children}
             </AppShell>
         </MantineProvider>
     )
 }
-export default ThemeProviderComponent
+export default Loading;
