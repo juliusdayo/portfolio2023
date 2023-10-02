@@ -1,8 +1,18 @@
 'use client'
 import { Provider } from "react-redux"
+import dynamic from 'next/dynamic'
 import store from "./store"
-import ThemeProviderComponent from "@/components/ThemeProvider"
+import { Skeleton } from "@mantine/core"
+import Loading from "@/components/LoadingSkeleton"
+// import ThemeProviderComponent from "@/components/ThemeProvider"
 
+const ThemeProviderComponent = dynamic(() => import('@/components/ThemeProvider'), {
+  ssr: false,
+  loading: () =>
+    <>
+      <Loading />
+    </>
+})
 
 export default function RootLayout({ children }) {
 
@@ -10,7 +20,7 @@ export default function RootLayout({ children }) {
     <html>
       <body>
         <Provider store={store}>
-          <ThemeProviderComponent > {children}</ThemeProviderComponent>
+          <ThemeProviderComponent >{children}</ThemeProviderComponent>
         </Provider>
       </body>
     </html>
