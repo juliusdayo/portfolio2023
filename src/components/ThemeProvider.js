@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 
 
 import Header from "./Header"
-
+import Footer from './Footer'
 const ThemeProviderComponent = ({ children }) => {
     const { isDark } = useSelector((state) => state.general)
     return (
@@ -23,9 +23,8 @@ const ThemeProviderComponent = ({ children }) => {
             }}
         >
             <AppShell
-                header={
-                    <Header isDark={isDark} />
-                }
+                header={<Header />}
+                footer={<Footer />}
             >
                 {children}
             </AppShell>

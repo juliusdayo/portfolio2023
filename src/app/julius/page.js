@@ -42,7 +42,7 @@ const Page = () => {
                     </Stack>
                 </Paper>
             </Affix>
-            <Container mb={160} mt={40}>
+            <Container mb={120} mt={40}>
                 <Stack >
                     <Alert variant="light" color="blue" title="Note:" >
                         I haven't optimized the pages and it would look not so much better in a mobile device so it's better if you view this on a desktop 😆
@@ -70,6 +70,7 @@ const Page = () => {
 
             </Container>
             <Container mb={100} mt={40}>
+                <Title mb={20}>Experience</Title>
                 <Group>
                     <Timeline active={0} color="blue">
                         <Timeline.Item >
