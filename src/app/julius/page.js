@@ -37,9 +37,8 @@ const Page = () => {
             <Affix position={{ left: 10, top: "30vh" }}>
                 <Paper bg="blue" p={5}>
                     <Stack>
-                        <IconBrandGithub />
-                        <IconBrandLinkedin />
-                        <IconBrandMessenger />
+                        <a href="https://github.com/juliusdayo" target="_blank"><IconBrandGithub href="" /></a>
+                        <a href="https://www.linkedin.com/in/juliuscoros10/" target="_blank"><IconBrandLinkedin /></a>
                     </Stack>
                 </Paper>
             </Affix>
