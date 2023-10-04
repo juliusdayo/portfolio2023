@@ -1,5 +1,5 @@
 'use client'
-import { Alert, Container, Grid, Paper, Flex, Tooltip, Skeleton, Stack, Title, Affix, Timeline, TimelineItem } from "@mantine/core";
+import { Alert, Container, Grid, Paper, Flex, Tooltip, Skeleton, Stack, Title, Affix, Timeline, Text, Space, Group } from "@mantine/core";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import dynamic from "next/dynamic";
@@ -42,7 +42,7 @@ const Page = () => {
                     </Stack>
                 </Paper>
             </Affix>
-            <Container mb={50}>
+            <Container mb={160} mt={40}>
                 <Stack >
                     <Alert variant="light" color="blue" title="Note:" >
                         I haven't optimized the pages and it would look not so much better in a mobile device so it's better if you view this on a desktop 😆
@@ -68,6 +68,39 @@ const Page = () => {
                     </Paper>
                 </Stack>
 
+            </Container>
+            <Container mb={100} mt={40}>
+                <Group>
+                    <Timeline active={0} color="blue">
+                        <Timeline.Item >
+                            Software Developer
+                            <Text c="dimmed" size="sm">Glyph Studios Inc.</Text>
+                            <Text size="xs" mt={4}>November 2022 -  Present</Text>
+                        </Timeline.Item>
+                        <Timeline.Item >
+                            Jr. Software Engineer
+                            <Text c="dimmed" size="sm">Volenday</Text>
+                            <Text size="xs" mt={4}>Oct 2021 -  November 2022</Text>
+                        </Timeline.Item>
+                        <Timeline.Item >
+                            Freelance Web Developer | QA Tester
+                            <Text c="dimmed" size="sm">Teksquad Institute of Information Technology</Text>
+                            <Text size="xs" mt={4}>Sep 2020 -  Oct 2021</Text>
+                        </Timeline.Item>
+                    </Timeline>
+                    <Timeline active={0} color="blue" >
+                        <Timeline.Item lineVariant="dashed">
+                            No freelancing project as of the moment
+                            <Text size="xs" mt={4}>Present</Text>
+                        </Timeline.Item>
+
+                        <Timeline.Item >
+                            Freelance
+
+                            <Text size="xs" mt={4}>Sep 2020</Text>
+                        </Timeline.Item>
+                    </Timeline>
+                </Group>
             </Container>
             <Container>
                 <Title>Personal Projects</Title>
